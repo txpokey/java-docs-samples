@@ -36,7 +36,7 @@
 
     <failOnMissingWebXml>false</failOnMissingWebXml> <!-- REQUIRED -->
 
-    <appengine.maven.plugin>2.2.0</appengine.maven.plugin>
+    <appengine.maven.plugin>2.3.0</appengine.maven.plugin>
     <jetty>9.4.30.v20200611</jetty>
   </properties>
 
@@ -48,7 +48,7 @@
       <dependency>
         <groupId>com.google.cloud</groupId>
         <artifactId>libraries-bom</artifactId>
-        <version>7.0.0</version>
+        <version>7.0.2</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
