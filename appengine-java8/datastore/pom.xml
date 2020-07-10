@@ -53,14 +53,14 @@
     <dependency>
       <groupId>com.google.auto.value</groupId>
       <artifactId>auto-value</artifactId>
-      <version>1.7.3</version>
+      <version>1.7.4</version>
       <scope>provided</scope>
     </dependency>
 
     <dependency>
       <groupId>com.google.auto.value</groupId>
       <artifactId>auto-value-annotations</artifactId>
-      <version>1.7.3</version>
+      <version>1.7.4</version>
     </dependency>
 
     <dependency>
@@ -145,7 +145,7 @@
             <annotationProcessorPath>
               <groupId>com.google.auto.value</groupId>
               <artifactId>auto-value</artifactId>
-              <version>1.7.3</version>
+              <version>1.7.4</version>
             </annotationProcessorPath>
           </annotationProcessorPaths>
         </configuration>
