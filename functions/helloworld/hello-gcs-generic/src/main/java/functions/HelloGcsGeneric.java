@@ -16,24 +16,25 @@
 
 package functions;
 
-// [START functions_helloworld_storage]
+// [START functions_helloworld_storage_generic]
 
 import com.google.cloud.functions.BackgroundFunction;
 import com.google.cloud.functions.Context;
 import functions.eventpojos.GcsEvent;
 import java.util.logging.Logger;
 
-public class HelloGcs implements BackgroundFunction<GcsEvent> {
-  private static final Logger logger = Logger.getLogger(HelloGcs.class.getName());
+public class HelloGcsGeneric implements BackgroundFunction<GcsEvent> {
+  private static final Logger logger = Logger.getLogger(HelloGcsGeneric.class.getName());
 
   @Override
   public void accept(GcsEvent event, Context context) {
-    if ("google.storage.object.finalize".equals(context.eventType())) {
-      // Default event type for GCS-triggered functions
-      logger.info(String.format("File %s uploaded.", event.getName()));
-    } else {
-      logger.warning(String.format("Unsupported event type: %s", context.eventType()));
-    }
+    logger.info("Event: " + context.eventId());
+    logger.info("Event Type: " + context.eventType());
+    logger.info("Bucket: " + event.getBucket());
+    logger.info("File: " + event.getName());
+    logger.info("Metageneration: " + event.getMetageneration());
+    logger.info("Created: " + event.getTimeCreated());
+    logger.info("Updated: " + event.getUpdated());
   }
 }
-// [END functions_helloworld_storage]
+// [END functions_helloworld_storage_generic]

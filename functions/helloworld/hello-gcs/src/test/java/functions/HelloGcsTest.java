@@ -45,7 +45,7 @@ public class HelloGcsTest {
   }
 
   @Test
-  public void helloGcs_shouldPrintFileName() {
+  public void helloGcs_shouldPrintUploadedMessage() {
     GcsEvent event = new GcsEvent();
     event.setName("foo.txt");
 
@@ -54,8 +54,23 @@ public class HelloGcsTest {
 
     new HelloGcs().accept(event, context);
 
-    String message = LOG_HANDLER.getStoredLogRecords().get(3).getMessage();
-    assertThat(message).contains("File: foo.txt");
+    String message = LOG_HANDLER.getStoredLogRecords().get(0).getMessage();
+    assertThat("File foo.txt uploaded.").isEqualTo(message);
+  }
+
+  @Test
+  public void helloGcs_shouldDisregardOtherEvents() {
+    GcsEvent event = new GcsEvent();
+    event.setName("baz.txt");
+
+    MockContext context = new MockContext();
+    context.eventType = "google.storage.object.metadataUpdate";
+
+    new HelloGcs().accept(event, context);
+
+    String message = LOG_HANDLER.getStoredLogRecords().get(0).getMessage();
+    assertThat("Unsupported event type: google.storage.object.metadataUpdate").isEqualTo(
+        message);
   }
 }
 // [END functions_storage_unit_test]
