@@ -25,7 +25,6 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
 
 @RestController
 public class RootController {
@@ -39,14 +38,14 @@ public class RootController {
     }
 
     @GetMapping("/")
-    String currentTime() {
+    String currentTime() throws SQLException {
         try (Connection connection = this.dataSource.getConnection()) {
             ResultSet resultSet = connection.prepareStatement("SELECT now()").executeQuery();
             resultSet.next();
             return resultSet.getString(1);
         } catch (SQLException ex) {
             logger.error("failed to read current time", ex);
-            return Arrays.toString(ex.getStackTrace());
+            throw ex;
         }
     }
 }
