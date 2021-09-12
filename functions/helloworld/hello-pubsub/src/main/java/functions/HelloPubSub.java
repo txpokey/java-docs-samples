@@ -21,6 +21,7 @@ package functions;
 import com.google.cloud.functions.BackgroundFunction;
 import com.google.cloud.functions.Context;
 import com.google.events.cloud.pubsub.v1.Message;
+
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.logging.Level;
